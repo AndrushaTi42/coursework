@@ -4,12 +4,12 @@ public class Employee {
     private String firstname;
     private String lastname;
     private String surname;
-    private String department;
+    private int department;
     private int salary;
     private int id;
     private static int count = 0;
 
-    public Employee(String firstname, String lastname, String surname, String department, int salary) {
+    public Employee(String firstname, String lastname, String surname, int department, int salary) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.surname = surname;
@@ -19,16 +19,24 @@ public class Employee {
 
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getId() {
+        return id;
     }
 
     public int getSalary() {
         return salary;
     }
 
-    public String getDepartment() {
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
+    public int getDepartment() {
         return department;
+    }
+
+    public void setDepartment(int department) {
+        this.department = department;
     }
 
     public String getSurname() {
@@ -43,16 +51,9 @@ public class Employee {
         return firstname;
     }
 
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
-    public void setSalary(int salary) {
-        this.salary = salary;
-    }
-
     @Override
     public boolean equals(Object o) {
+        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
         return salary == employee.salary;
@@ -71,5 +72,10 @@ public class Employee {
 
     public void printShortInfo() {
         System.out.println("firstname = " + firstname + ", salary = " + salary + ";");
+    }
+
+    public void indexSalary(double percent) {      //увеличение з/п на процент;
+        double increase = this.salary * (percent / 100);
+        this.salary = (int) (this.salary + increase);
     }
 }
