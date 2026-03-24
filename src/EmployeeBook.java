@@ -1,8 +1,13 @@
 public class EmployeeBook {
-    private Employee[] employees = new Employee[10]; //массив класса Employee с данными сотрудников;
-    //private int employeesCell = 0; //доп переменная с информацией о количестве сотрудников;
+    //массив класса Employee с данными сотрудников;
+    private Employee[] employees = new Employee[10];
 
-    public boolean addEmployee(Employee newEmployee) { //метод для заполнение массива;
+    public Employee[] getEmployees() {
+        return employees;
+    }
+
+    //метод для заполнение массива;
+    public boolean addEmployee(Employee newEmployee) {
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] == null) {
                 employees[i] = newEmployee;
@@ -11,20 +16,23 @@ public class EmployeeBook {
         }
         return false;
     }
+
     //метод удаления сотрудника из массива
-    //по заданию не требуется, но будто логически напрашивается, но если требуется следовать строго по ТЗ, то удалю
+    //по заданию не требуется, но будто логически напрашивается,
+    // но если требуется следовать строго по ТЗ, то удалю;
     public void deleteEmployee(Employee employee) {
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] != null && employees[i] == employee) {
                 employees[i] = null;
-                System.out.println("Employee with ID: "  +  employee.getId() + " - deleted;");
+                System.out.println("Employee with ID: " + employee.getId() + " - deleted;");
                 return;
             }
         }
         System.out.println("Employees not found");
     }
 
-    public void printAllEmployees() {    //вывод списка всех сотрудников;
+    //вывод списка всех сотрудников;
+    public void printAllEmployees() {
         for (Employee emp : employees) {
             if (emp != null) {
                 System.out.println(emp.toString());
@@ -32,7 +40,8 @@ public class EmployeeBook {
         }
     }
 
-    public void calculationAverageSalary() {  //подсчет средней з/п;
+    //подсчет средней з/п;
+    public void calculationAverageSalary() {
         double sum = 0;
         int count = 0;
         for (Employee emp : employees) {
@@ -81,7 +90,8 @@ public class EmployeeBook {
         }
     }
 
-    public void addIndexSalaryDepartment(int targetDept, double percent) { //индексация зп по отделам;
+    //индексация зп по отделам;
+    public void addIndexSalaryDepartment(int targetDept, double percent) {
         for (Employee emp : employees) {
             if (emp == null) {
                 continue;
@@ -93,8 +103,9 @@ public class EmployeeBook {
         }
     }
 
-    public void printOverlySalary(int targetDept, int minSalary) { //проверка не превышает ли з/п
-        boolean found = false;                                       //сотрудников отдела потолок;
+    //проверка не превышает ли з/п сотрудников отдела потолок;
+    public void printOverlySalary(int targetDept, int minSalary) {
+        boolean found = false;
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] != null && employees[i].getDepartment() == targetDept
                     && employees[i].getSalary() > minSalary) {
@@ -109,7 +120,7 @@ public class EmployeeBook {
         }
     }
 
-    //проверка на получение минимальной з/п
+    //проверка на получение минимальной з/п по количеству сотрудников;
     public void printDeficiencySalary(int wage, int employeeNumber) {
         int i = 0;
         int count = 0;
@@ -124,7 +135,8 @@ public class EmployeeBook {
             i++;
         }
     }
-//проверка на наличие сотрудника в системе, с точки зрения бух учета
+
+    //проверка на наличие сотрудника в системе, с точки зрения бух учета;
     public boolean existsBySalary(Employee target) {
         for (Employee emp : employees) {
             if (emp != null && emp.equals(target)) {
@@ -134,6 +146,7 @@ public class EmployeeBook {
         return false;
     }
 
+    //поиск сотрудника по id;
     public void findEmployeeForId(int id) {
         for (Employee emp : employees) {
             if (emp != null && emp.getId() == id) {
@@ -144,4 +157,15 @@ public class EmployeeBook {
         System.out.println("Employees not found");
     }
 
+    //изменения отдела. По тз нет, но добавил для простоты смены отдела сотрудника,
+    // чтоб облегчить проверку других методов
+    public void changeDept(int id, int newDept) {
+        for (Employee emp : employees) {
+            if (emp != null && emp.getId() == id) {
+                emp.setDepartment(newDept);
+                return;
+            }
+        }
+        System.out.println("Employees not found");
+    }
 }

@@ -3,16 +3,17 @@ import java.util.Objects;
 public class Employee {
     private String firstname;
     private String lastname;
-    private String surname;
+    private String midlname;
     private int department;
     private int salary;
     private int id;
     private static int count = 0;
 
-    public Employee(String firstname, String lastname, String surname, int department, int salary) {
+    //конструктор
+    public Employee(String firstname, String lastname, String middleName, int department, int salary) {
         this.firstname = firstname;
         this.lastname = lastname;
-        this.surname = surname;
+        this.midlname = middleName;
         this.department = department;
         this.salary = salary;
         this.id = ++count;
@@ -39,8 +40,8 @@ public class Employee {
         this.department = department;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getMidlname() {
+        return midlname;
     }
 
     public String getLastname() {
@@ -51,6 +52,7 @@ public class Employee {
         return firstname;
     }
 
+    //реализация сравнения equals по з/п;
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -64,17 +66,20 @@ public class Employee {
         return Objects.hashCode(salary);
     }
 
+    //переопределение toString;
     @Override
     public String toString() {
-        return "firstname = " + firstname  + ", lastname = " + lastname + ", surname = " + surname +
+        return "firstname = " + firstname + ", lastname = " + lastname + ", surname = " + midlname +
                 ", department = " + department + ", salary = " + salary + ", id = " + id + ";";
     }
 
+    //метод вывода сотрудника: имя + з/п;
     public void printShortInfo() {
         System.out.println("firstname = " + firstname + ", salary = " + salary + ";");
     }
 
-    public void indexSalary(double percent) {      //увеличение з/п на процент;
+    //увеличение з/п на percent;
+    public void indexSalary(double percent) {
         double increase = this.salary * (percent / 100);
         this.salary = (int) (this.salary + increase);
     }
