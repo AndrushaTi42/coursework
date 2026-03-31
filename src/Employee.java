@@ -73,12 +73,19 @@ public class Employee {
                 ", department = " + department + ", salary = " + salary + ", id = " + id + ";";
     }
 
-    //метод вывода сотрудника: имя + з/п;
+
+    /**
+     * метод вывода сотрудника: имя + з/п;
+     */
     public void printShortInfo() {
         System.out.println("firstname = " + firstname + ", salary = " + salary + ";");
     }
 
-    //увеличение з/п на percent;
+
+    /**
+     * увеличение з/п на percent
+     * @param percent размер процента
+     */
     public void indexSalary(double percent) {
         double increase = this.salary * (percent / 100);
         this.salary = (int) (this.salary + increase);

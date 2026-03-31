@@ -1,12 +1,20 @@
 public class EmployeeBook {
-    //массив класса Employee с данными сотрудников;
+
+    /**
+     * массив класса Employee с данными сотрудников
+     */
     private Employee[] employees = new Employee[10];
 
     public Employee[] getEmployees() {
         return employees;
     }
 
-    //метод для заполнение массива;
+
+    /**
+     * заполнение массива сотрудниками
+     * @param newEmployee новый сотрудник
+     * @return
+     */
     public boolean addEmployee(Employee newEmployee) {
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] == null) {
@@ -17,9 +25,12 @@ public class EmployeeBook {
         return false;
     }
 
-    //метод удаления сотрудника из массива
     //по заданию не требуется, но будто логически напрашивается,
     // но если требуется следовать строго по ТЗ, то удалю;
+    /**
+     * удаление сотрудника из массива
+     * @param employee сотрудник которого удаляем
+     */
     public void deleteEmployee(Employee employee) {
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] != null && employees[i] == employee) {
@@ -31,7 +42,10 @@ public class EmployeeBook {
         System.out.println("Employees not found");
     }
 
-    //вывод списка всех сотрудников;
+
+    /**
+     * вывод списка всех сотрудников;
+     */
     public void printAllEmployees() {
         for (Employee emp : employees) {
             if (emp != null) {
@@ -40,7 +54,10 @@ public class EmployeeBook {
         }
     }
 
-    //подсчет средней з/п;
+
+    /**
+     * подсчет средней з/п;
+     */
     public void calculationAverageSalary() {
         double sum = 0;
         int count = 0;
@@ -58,7 +75,11 @@ public class EmployeeBook {
         }
     }
 
-    //подсчет и вывод налогов в PROGRESSIVE и PROPORTIONAL системах;
+
+    /**
+     * подсчет и вывод налогов
+     * @param taxSystem выбор системы подсчета (PROGRESSIVE/PROPORTIONAL)
+     */
     public void calculationTax(String taxSystem) {
         switch (taxSystem) {
             case "PROGRESSIVE":
@@ -90,7 +111,12 @@ public class EmployeeBook {
         }
     }
 
-    //индексация зп по отделам;
+
+    /**
+     * индексация зп по отделам;
+     * @param targetDept индексируемый отдел
+     * @param percent процент индексации
+     */
     public void addIndexSalaryDepartment(int targetDept, double percent) {
         for (Employee emp : employees) {
             if (emp == null) {
@@ -103,7 +129,12 @@ public class EmployeeBook {
         }
     }
 
-    //проверка не превышает ли з/п сотрудников отдела потолок;
+
+    /**
+     * проверка не превышает ли з/п сотрудников отдела потолок;
+     * @param targetDept проверяемый отдел
+     * @param minSalary потолок з/п
+     */
     public void printOverlySalary(int targetDept, int minSalary) {
         boolean found = false;
         for (int i = 0; i < employees.length; i++) {
@@ -120,7 +151,12 @@ public class EmployeeBook {
         }
     }
 
-    //проверка на получение минимальной з/п по количеству сотрудников;
+
+    /**
+     * проверка на получение минимальной з/п по количеству сотрудников.
+     * @param wage минимальная з/п
+     * @param employeeNumber количество сотрудников
+     */
     public void printDeficiencySalary(int wage, int employeeNumber) {
         int i = 0;
         int count = 0;
@@ -136,7 +172,11 @@ public class EmployeeBook {
         }
     }
 
-    //проверка на наличие сотрудника в системе, с точки зрения бух учета;
+    /**
+     * проверка на наличие сотрудника в системе, с точки зрения бух учета.
+     * @param target сотрудник для проверки
+     * @return
+     */
     public boolean existsBySalary(Employee target) {
         for (Employee emp : employees) {
             if (emp != null && emp.equals(target)) {
@@ -146,7 +186,11 @@ public class EmployeeBook {
         return false;
     }
 
-    //поиск сотрудника по id;
+
+    /**
+     * поиск сотрудника по id
+     * @param id
+     */
     public void findEmployeeForId(int id) {
         for (Employee emp : employees) {
             if (emp != null && emp.getId() == id) {
@@ -157,8 +201,13 @@ public class EmployeeBook {
         System.out.println("Employees not found");
     }
 
-    //изменения отдела. По тз нет, но добавил для простоты смены отдела сотрудника,
+    //По тз нет, но добавил для простоты смены отдела сотрудника,
     // чтоб облегчить проверку других методов
+    /**
+     * изменения отдела
+     * @param id сотрудник для смены отдела
+     * @param newDept новый отдел
+     */
     public void changeDept(int id, int newDept) {
         for (Employee emp : employees) {
             if (emp != null && emp.getId() == id) {
